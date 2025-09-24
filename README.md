@@ -23,9 +23,10 @@ Install dependencies:
 npm install
 Create a .env file:
 PORT=3000
-MONGO_URI=mongodb://localhost:27017/edzycrawler
+MONGO_URI=
 SITEMAP_URL=https://www.edzy.ai/sitemap.xml
 Start the server:
+/n
 tsc -b
 node dist/index.js
 
