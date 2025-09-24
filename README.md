@@ -1,49 +1,48 @@
-# 🕷️ Sitemap Crawler – Edzy.ai  
+# 🤖 Telegram Joke Bot – Edzy.ai  
 
-This project is a **backend crawler service** for analyzing the link structure of Edzy.ai (or any website with a sitemap).  
-It crawls pages from a sitemap, extracts outgoing links, classifies them as **internal** or **external**, and identifies **incoming links** for each page.  
-It also summarizes the **most linked-to pages** across the site.  
+A **Telegram bot** that engages users by delivering random jokes at configurable intervals.  
+Users can enable/disable joke delivery and choose how often they want to receive jokes.  
 
 ---
 
 ## 📌 Features  
 
-- ✅ Crawl all pages listed in a sitemap  
-- ✅ Extract outgoing links from each page  
-- ✅ Classify links as internal or external  
-- ✅ Identify incoming links for each page  
-- ✅ Find top N most linked pages  
-- ✅ Store crawl data (HTML, links, metadata) in MongoDB  
-- ✅ REST API endpoints to query linking information  
+- ✅ Start a chat and automatically receive a random joke every **N minutes** (default: `1`)  
+- ✅ Configure joke frequency using simple commands  
+- ✅ Commands:  
+  - `ENABLE` → Resume joke delivery  
+  - `DISABLE` → Pause joke delivery  
+- ✅ Store user preferences in **MongoDB**  
+- ✅ Tracks frequency, enable/disable state, and last sent timestamp  
+- ✅ Built with scalability & clean architecture in mind  
 
 ---
 
 ## ⚙️ Tech Stack  
 
-- **Node.js + Express** → API backend  
-- **MongoDB + Mongoose** → Data storage  
-- **Axios** → Fetch HTML content  
-- **Cheerio** → Parse and extract links from HTML  
-- **Bruno** → API testing (alternative to Postman)  
+- **Node.js + Express** → Backend API  
+- **node-telegram-bot-api** → Telegram Bot integration  
+- **Official Joke API** → Joke source ([GitHub](https://github.com/15Dkatz/official_joke_api))  
+- **MongoDB + Mongoose** → Store user chat preferences  
 
 ---
 
-## 🚀 Installation  
+## 🛠️ MongoDB Model  
 
-Clone the repository:  
+User model (example):  
 
-```bash
+```js
+{
+  chatId: String,       
+  isEnabled: Boolean,   
+  frequency: Number,   
+  lastSentAt: Date      
+}
+
+Installation
+Clone the repo and install dependencies:
 git clone <your-repo-url>
 cd backend
-
 npm install
-
-in you .env add it
-PORT=3000
-MONGO_URI=mongodb://localhost:27017/edzycrawler
-SITEMAP_URL=https://www.edzy.ai/sitemap.xml
-
-Start the server
-tsc -b
-node dist/index.js
-
+Start the bot:
+npm start
