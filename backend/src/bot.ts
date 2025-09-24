@@ -34,7 +34,7 @@ bot.on('message', async (msg) => {
     const chatId = msg.chat.id.toString();
     const text = msg.text?.toUpperCase();
 
-    if (!text || text === '/START') return; // skip undefined or /start
+    if (!text || text === '/START') return; 
 
     const user = await User.findOne({ chatId });
     if (!user) return;
