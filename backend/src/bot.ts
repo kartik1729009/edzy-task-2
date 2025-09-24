@@ -25,7 +25,6 @@ export default function startBot() {
       'Welcome! You will receive jokes every 1 minute by default. Use ENABLE/DISABLE to control delivery.'
     );
 
-    // Schedule jokes for this user (will respect isEnabled & frequency)
     scheduleJokes(user);
   });
 }
@@ -45,12 +44,10 @@ bot.on('message', async (msg) => {
     await user.save();
     bot.sendMessage(chatId, 'Jokes delivery enabled!');
 
-    // Clear any existing scheduled joke
     if (userTimeouts[chatId]) {
         clearTimeout(userTimeouts[chatId]);
     }
 
-    // Schedule the next joke without sending immediately
     userTimeouts[chatId] = setTimeout(async () => {
         const freshUser = await User.findById(user._id);
         if (freshUser?.isEnabled) {
